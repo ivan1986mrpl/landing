@@ -1,0 +1,35 @@
+.tabcontainer {
+}
+.tabcontent {
+}
+.tabheader {
+    &__items {
+        margin-bottom: 2rem;
+    }
+    &__item {
+        font-size: 1.125rem;
+        color: rgba(0, 0, 0, 0.6);
+        margin-bottom: 0.625rem;                
+        cursor: pointer;
+        transition: 0.3s all;
+        &_active {
+            color: #000;
+            font-size: 1.375rem;
+            font-weight: 700;
+        }
+    }
+}
+
+/* 
+add this markup to index.html
+<div class="tabcontainer">
+    <div class="tabheader">
+        <ul class="tabheader__items">
+            <li class="tabheader__item tabheader__item_active">title tab № 1</li>
+            <li class="tabheader__item">title tab № 2</li>
+        </ul>
+    </div>
+    <div class="tabcontent">content tab № 1	</div>
+    <div class="tabcontent">content tab № 2	</div>
+</div>
+*/

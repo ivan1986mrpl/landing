@@ -1,0 +1,36 @@
+$fontFamily: "Roboto";
+$fontSize: rem(18);
+$mainColor: #FFFFFF;
+$secondColor: #0F172A;
+$purpleColor: #9333EA;
+$bcgBodyColor: #0F172A;
+// не переименовывать
+$linkHoverBackground: rgba(255, 255, 255, .8);// для класса link-hover 
+$linkHoverColor: rgba(255, 255, 255, .8);// для класса link-hover
+$headerContainerHeigthBig: 144; //для высоты подложки безопасности, чтобы пункты меню не налазили на логотип, а появлялась прокрутка
+$headerContainerHeigthSmall: 60;//для высоты подложки безопасности, чтобы пункты меню не налазили на логотип, а появлялась прокрутка 
+
+
+
+
+
+
+
+
+
+// Мінімальна ширина сторінки
+$minWidth: 320;
+// Ширина полотна (макету)
+$maxWidth: 1440;
+// Ширина обмежуючого контейнера (0 = немає обмеження)
+$maxWidthContainer: 1280;//указывать реальный размер с макета (в переменную в написании контейнера уже включены паддинги)
+// Загальний відступ у контейнера
+// (30 = по 15px ліворуч і праворуч, 0 = немає відступу)
+$containerPadding: 30;
+// Ширина спрацьовування першого брейкпоінту
+$containerWidth: $maxWidthContainer + $containerPadding;
+// Брейк-поїнти
+$pc: em($containerWidth);
+$tablet: em(991.98);
+$mobile: em(767.98);
+$mobileSmall: em(479.98);

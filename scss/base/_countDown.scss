@@ -1,0 +1,65 @@
+.timer {
+    margin: 0 auto;
+    width: rem(315);
+    @media (max-width: 410px){
+        width: 100%;
+    }
+    &__title {
+        text-align: center;
+        font-size: rem(26);
+        font-weight: 500;
+        text-transform: uppercase;
+        &:not(:last-child) {
+            margin-bottom: rem(25);
+        }
+    }
+}
+.countdown {
+    font-size: rem(16);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(8);
+    border-radius: rem(12);
+    box-shadow: 0 0 50px 16px rgba(0, 0, 0, .4);
+    @media (max-width: 410px){
+        padding: rem(3);
+    }
+}
+.num {
+    &:not(:last-child) {
+        margin-bottom: rem(10);
+    }
+}
+.name {
+    display: block;
+    min-width: rem(73);
+    text-align: center;
+}
+/* 
+add this markup to index.html
+<div class="timer">
+    <div class="timer__title">COUNTDOWN</div>
+    <div class="timer__wrapper">
+        <div class="countdown">
+            <div class="days">
+                <p class="num">0</p>
+                <span class="name">День</span>
+            </div>
+            <div class="hours">
+                <p class="num">0</p>
+                <span class="name">Часов</span>
+            </div>
+            <div class="minutes">
+                <p class="num">0</p>
+                <span class="name">Минут</span>
+            </div>
+            <div class="seconds">
+                <p class="num">0</p>
+                <span class="name">Секунды</span>
+            </div>
+        </div>
+    </div>
+</div>
+*/
