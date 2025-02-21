@@ -5,7 +5,6 @@
     text-align: center;
     padding-block: rem(16);
     padding-inline: rem(40);
-
     font-weight: 500;
     font-size: rem(20);
     line-height: 1.2;
@@ -22,6 +21,9 @@
         line-height: 1.5;
         padding-block: rem(12);
         padding-inline: rem(28);
+        @media (max-width:$tablet){
+			padding-inline: rem(18);
+		}
     }
     &-transparent {
         background-color: transparent;
@@ -29,6 +31,11 @@
             &:hover{
                 background-color: $purpleColor;  
             }
+        }
+    }
+    &-hidden {
+        @media (max-width: em(410)){
+            display: none;
         }
     }
     &-white-border {

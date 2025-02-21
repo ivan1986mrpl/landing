@@ -1,45 +1,126 @@
-// @import 'base/burgerMenu.scss'; //В script.js раскоментировать подключение menuBurger
-// @import 'base/headerFon'; //В script.js раскоментировать подключение headerFon
-
+@import 'base/burgerMenu';
 .header {
-
+	padding-block: rem(24);
+	@media (max-width:$tablet){
+		padding-block: rem(15);
+	}
 	&__container {
+		max-inline-size: rem(1030);
 	}
-
 	&__body {
+		padding: rem(24);
+		box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.07), 
+					0 25px 50px -12px rgba(0, 0, 0, 0.25);
+		background-color: #192131;
+		border-radius: rem(20);
+		display: grid;
+		align-items: center; 
+		column-gap: rem(46);
+		row-gap: rem(5);
+		grid-template-columns: auto 1fr auto;
+		@media (max-width:$tablet){
+			padding-block: rem(8);
+			padding-inline: rem(24);
+			column-gap: rem(22)
+		}
+		@media (max-width:$mobile){
+			display: flex;
+			//grid-template-columns: auto auto;
+			justify-content: space-between;
+			column-gap: rem(16);
+			padding-inline: rem(16);
+		}
+		@media (max-width: em(450)){
+			column-gap: rem(10);
+			padding-inline: rem(10);
+		}
 	}
-
 	&__logo {
+		position: relative;
+		z-index: 5;
+		font-size: rem(32);
+		font-weight: 700;
+		line-height: 1.1;
+		@media (max-width:$mobile){
+			font-size: rem(26); 
+		}
 	}
-
-	&__menu {
-	}
-
 	&__actions {
+		position: relative;
+		z-index: 5;
 	}
 }
 .menu {
-
 	&__body {
+		&::before{
+			@media (max-width:$mobile){
+				content:'';
+				position: fixed; 
+				z-index: 2;
+				block-size: 64px;
+				inset-inline-start: 15px;
+				inset-inline-end: 15px;
+				inset-block-start: 15px;
+				box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.07), 
+							0 25px 50px -12px rgba(0, 0, 0, 0.25);
+				background-color: #192131;
+				border-radius: rem(20);
+				transition: all 0.3s ease 0s;
+				visibility: hidden;
+			}
+		}
+		@media (max-width:$mobile){
+			position: fixed;
+			overflow: auto;
+			inset-inline-start: -100%;
+			inset-block-start: 0;
+			block-size: 100%;
+			inline-size: 100%; 
+			background-color: $bcgBodyColor;
+			padding-block-start: 100px;
+			padding-block-end: 30px;
+			padding-inline: 15px;
+			transition: all 0.3s ease 0s;
+		}
 	}
-
 	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: rem(32);
+		row-gap: rem(5);
+		@media (max-width:$tablet){
+			column-gap: rem(20)
+		}
+		@media (max-width:$mobile){
+			flex-direction: column;
+			align-items: flex-end;
+			row-gap: rem(25);
+			padding-inline-end: 18px; 
+		}
 	}
-
-	&__item {
-	}
-
 	&__link {
+		font-weight: 500;
+		font-size: rem(16);
+		line-height: 1.5;
+		letter-spacing: 0.03em;
+		color: $mainColor;
+		@media (max-width:$mobile){
+			font-size: rem(30);
+		}
 	}
+}
+.open-menu .menu__body {
+	inset-inline-start: 0;
+}
+.open-menu .menu__body::before {
+	visibility: visible;
 }
 .actions-header {
-
-	&__button {
+	display: flex;
+	column-gap: rem(16);
+	align-items: center;
+	flex-wrap: wrap;
+	@media (max-width:$tablet){
+		column-gap: rem(10)
 	}
 }
-
-
-
-
-
-

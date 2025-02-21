@@ -1,69 +1,7 @@
-$menuColor: $mainColor;//text
-$menuBackground: $secondColor;//background
 $iconMenuColor: $mainColor;//burger button
-//$headerContainerHeigthBig: 110; $headerContainerHeigthSmall: 60; //указать в файле style.scss для высоты подложки безопасности, чтобы пункты меню не налазили на логотип, а появлялась прокрутка
 
-.header {
-	&__logo {
-		position: relative;//burger
-		z-index: 5;//burger
-	}
-}
-.menu {
-	&__body {
-		@media (max-width:$mobile){//burger
-			display: grid;
-			grid-template-rows: 1fr auto;
-			gap: rem(25);
-			position: fixed;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			left: -100%;
-			overflow: auto;
-			background-color: $menuBackground;
-			padding: rem(100) rem(15) rem(30) rem(15);
-			transition: left 0.3s;
-			&::before{//подложка безопасности, чтобы пункты меню не налазили на логотип, а появлялась прокрутка
-				content:'';
-				position: fixed;
-				width: 100%;
-				@include adaptiveValue("height", $headerContainerHeigthBig, $headerContainerHeigthSmall);//должно совпадать с высотой header
-				top: 0;
-				left: -100%;
-				z-index: 2;
-				background-color: $menuBackground;
-				transition: left 0.3s;
-			}
-		}
-	}
-	&__list {
-		@media (max-width:$mobile){//burger
-			flex-direction: column;
-			column-gap: rem(20);
-		}
-	}
-	&__item {
-		text-align: right;
-	}
-	&__link {
-		display: inline-block;//burger
-		@media (max-width:$mobile){//burger
-			color: $menuColor;//перепишется в header.scss
-			font-size: rem(28);
-		}
-	}
-}
-@media (max-width:$mobile) {
-	.menu-open.menu__body {
-		left: 0;
-	}
-	.menu-open.menu__body::before {
-		left: 0;
-	}
-}
-
-//Burger
+/* 
+//Burger first version
 .icon-menu {
 	display: none;
 	@media (max-width: $mobile) {
@@ -117,4 +55,58 @@ $iconMenuColor: $mainColor;//burger button
 			transform: rotate(45deg);
 		} 
 	}
+} */
+
+ 
+// Burger second version
+.icon-menu {
+	display: none;
+	@media (max-width:$mobile){
+		display: block;
+		position: relative;
+		z-index: 5;
+		inline-size: rem(48);
+		block-size: rem(48); 
+		span,
+		&::before,
+		&::after{
+			content:'';
+			position: absolute;
+			block-size: rem(4);
+			border-radius: rem(4);
+			background-color: $iconMenuColor;
+			transition: all 0.3s ease 0s;
+		}
+		&::before,
+		&::after{
+			inline-size: rem(15);
+		}
+		span {
+			inset-inline-start: 50%;
+			inset-block-start: 50%;
+			transform: translate(-50%, -50%);
+			inline-size: rem(28);
+		}
+		&::before{
+			inset-inline-start: rem(10);
+			inset-block-start: rem(14);			
+		}
+		&::after{
+			inset-inline-end: rem(10);
+			inset-block-end: rem(14);			
+		}
+	}
 }
+.open-menu .icon-menu {
+	span {
+		transform: translate(-50%, -50%) rotate(-45deg);
+		inline-size: rem(33);
+	}
+	&::before {
+		transform: translate(0, 1px) rotate(45deg);
+	}
+	&::after {
+		transform: translate(0, -2px) rotate(45deg);
+	}
+}
+
