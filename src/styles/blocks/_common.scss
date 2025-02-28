@@ -16,7 +16,7 @@
     &__title {        
         font-weight: 800;
         line-height: 1.1;
-        text-wrap: balance;
+        //text-wrap: balance;
         @include adaptive-clamp("font-size", 72, 40);
     }
     &__title,
