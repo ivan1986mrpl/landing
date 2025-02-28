@@ -1,0 +1,38 @@
+.timer {
+    margin: 0 auto;
+    width: 315px;
+    @media (max-width: 410px){
+        width: 100%;
+    }
+    &__title {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 500;
+        text-transform: uppercase;
+        &:not(:last-child) {
+            margin-bottom: 25px;
+        }
+    }
+}
+.countdown {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 0 50px 16px rgba(0, 0, 0, .4);
+    @media (max-width: 410px){
+        padding: 3px;
+    }
+}
+.num {
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+.name {
+    display: block;
+    min-width:  75px;
+    text-align: center;
+}

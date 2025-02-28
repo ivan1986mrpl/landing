@@ -1,0 +1,56 @@
+@use "sass:math" as math;
+@use './../config/root' as *;
+@use './../config/functions' as *;
+@use './../config/mixins' as *;
+.button {
+    background-color: var(--c-purple);
+    border-radius: rem(8);
+    text-align: center;
+    padding-block: rem(16);
+    padding-inline: rem(40);
+    font-weight: 500;
+    font-size: rem(20);
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+    color: var(--c-white);
+    transition: all 0.3s;
+    @media (any-hover: hover){
+        &:hover{
+            background-color: #7923c9;  
+        }
+    }
+    &-min {
+        font-size: rem(16);
+        line-height: 1.5;
+        padding-block: rem(12);
+        padding-inline: rem(28);
+        @media (max-width:em(991.98)){
+			padding-inline: rem(18);
+		}
+    }
+    &-transparent {
+        background-color: transparent;
+        @media (any-hover: hover){
+            &:hover{
+                background-color: var(--c-purple);  
+            }
+        }
+    }
+    &-hidden {
+        @media (max-width: em(410)){
+            display: none;
+        }
+    }
+    &-white-border {
+        background-color: transparent;
+        padding-block: rem(14);
+        border: rem(2) solid var(--c-white);
+        @media (any-hover: hover){
+            &:hover{
+                background-color: var(--c-purple);  
+            }
+        }
+    }    
+}
+//<a href="#" class="actions-header__button button button-min button-transparent button-white-border"></a>
+/* Button */
