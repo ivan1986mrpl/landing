@@ -160,3 +160,10 @@ $pulseColor: var(--hover-color);
         }
     }
 }
+.bcg-decor {
+    position: relative;
+    span {
+        position: relative;
+        z-index: 2;
+    }
+}
