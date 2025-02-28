@@ -1,7 +1,5 @@
-//@use "sass:math" as math;
 @use "../config/functions" as *;
 @use "../config/mixins" as *;
-//@use "../config/variables" as global;
 
 .hero {
     @include adaptive-clamp("padding-top", 104, 20);//если header sticky, то паддинг берем от низа header
