@@ -1,20 +1,25 @@
-@use "sass:math" as math;
+//@use "sass:math" as math;
 @use "../config/functions" as *;
 @use "../config/mixins" as *;
-@use "../config/variables" as global;
+//@use "../config/variables" as global;
 @use '../config/root' as *;
 
 // header-block
 .header-block {
     display: grid;
     gap: rem(32);
-    justify-content: center;
-    &__title {
-        @include adaptive-clamp("font-size", 72, 40);
-        //font-size: rem(72);
+    &--center {
+        justify-content: center;
+    }
+    &__label {
+        font-size: rem(20);
+        font-weight: 800;
+    }
+    &__title {        
         font-weight: 800;
         line-height: 1.1;
         text-wrap: balance;
+        @include adaptive-clamp("font-size", 72, 40);
     }
     &__title span {
         display: inline-block;
@@ -62,6 +67,7 @@
         font-weight: 400;
         line-height: 1.6;
         text-align: center;
+        text-wrap: balance;
     }
     &__buttons {
         display: flex;
@@ -79,7 +85,16 @@
 }
 //=============================
 .title {
-    font-size: rem(56);
     font-weight: 800;
     line-height: 1.1;
+    @include adaptive-clamp("font-size", 56, 40);
 }
+//=============================
+
+
+
+
+
+
+
+//=============================

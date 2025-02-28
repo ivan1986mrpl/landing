@@ -3,26 +3,23 @@
 @use "../config/functions" as *;
 @use "../config/mixins" as *;
 //@use '../config/root' as *;
-
-.page {
-
-    &__partners {
-    }
-}
 .partners {
 
     &__container {
     }
-
     &__title {
         text-align: center;
+        &:not(:last-child) {
+            @include adaptive-clamp("margin-bottom", 60, 25);
+        }
     }
-
     &__items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: rem(24);
     }
-
     &__item {
     }
 }
-.title {
-}
+
