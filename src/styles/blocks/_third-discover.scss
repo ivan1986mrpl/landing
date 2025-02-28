@@ -3,3 +3,36 @@
 @use "../config/functions" as *;
 @use "../config/mixins" as *;
 //@use '../config/root' as *;
+.discover {
+
+    &__container {
+        display: grid;
+        align-items: start;
+        grid-template-columns: 1fr 29%; /* 375/1280 */
+        gap: rem(25);
+        @media (max-width: em(650)){
+            grid-template-columns: auto;
+            justify-items: center;
+       }
+    }
+    &__body {
+    }
+    &__header-block {
+        .header-block__link {
+            @media (max-width: em(650)){
+                justify-self: center;
+           }
+        }
+        @media (max-width: em(650)){
+            text-align: center;
+       }
+    }
+    &__image {
+        padding-right: rem(25);
+        @media (max-width: em(991.98)){
+             padding-right: 0; 
+        }
+    }
+    &__img {
+    }
+}

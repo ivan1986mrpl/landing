@@ -4,7 +4,7 @@
 
 .hover-link {
     position: relative;
-    transition: all 0.4s ease 0s;
+    transition: color 0.4s ease 0s;
     &::after{
         content:'';
         position: absolute;
@@ -24,7 +24,6 @@
         }
     }
 }  
-
  /* 
  .hover-scale-filter {
     img {
@@ -87,8 +86,8 @@
 } */ 
 // ========================================
 // <div class="pulse"><img src="assets/img/instagram.svg" alt="button"></div> 
-/*
-$pulseColor: var(--c-lightgrey); 
+
+$pulseColor: var(--hover-color); 
 .pulse {
     display: flex;
     justify-content: center;
@@ -97,10 +96,11 @@ $pulseColor: var(--c-lightgrey);
     position: relative;
     text-align: center;
     padding: 20px;
-    border-radius: 50%;
+    border-radius: rem(20);
+    //border-radius: 50%;
     background: $pulseColor;
-    width: 60px;
-    height: 60px;
+    //width: 60px;
+    //height: 60px;
     img {
         max-width: 100%;
       }
@@ -114,7 +114,8 @@ $pulseColor: var(--c-lightgrey);
         right: -20px;
         top: -20px;
         bottom: -20px;
-        border-radius: 50%;
+        border-radius: rem(20);
+        //border-radius: 50%;
         animation: pulse 2.5s linear infinite;
     }
     &::after {
@@ -130,8 +131,32 @@ $pulseColor: var(--c-lightgrey);
         opacity: 1;
     }
     100% {
-        transform: scale(1.2);
+        transform: scale(1);
         opacity: 0;
     }
-}  */
+}  
 // ====================================
+.border-decor {
+    position: relative;
+    span {
+        position: relative;
+        z-index: 2;
+    }
+    &::before{
+        content:'';
+        position: absolute;
+        top: 0;
+        left: rem(-10);
+        height: 100%;
+        width: 96%;
+        border: rem(5) solid #c2410c;
+        @media (max-width: em(991.98)){
+            left: rem(-7);
+            border: rem(3) solid #c2410c;
+        }
+        @media (max-width: em(991.98)){
+            left: rem(-5);
+            border: rem(2) solid #c2410c;
+        }
+    }
+}
