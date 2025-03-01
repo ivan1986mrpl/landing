@@ -31,13 +31,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // tabs();
 
-// popup();
+ popup();
 
-// spollers();
+ spollers();
 
  //headerFon();
 
-// pageNavigation();
+ pageNavigation();
 
  menuBurger();
 

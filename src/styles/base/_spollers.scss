@@ -21,7 +21,8 @@
 }
 .init .spollers__title:after {
     content: '';
-    background: url("../../assets/img/root/spoller.svg") center center no-repeat;
+    //background: url("../../assets/img/root/spoller.svg") center center no-repeat;
+    background: url("../../assets/img/root/spoller-white.svg") center center no-repeat;
     width: 20px;
     height: 20px;
     transition: transform .5s;
@@ -31,26 +32,7 @@
 }
 
 // указать свои стили
-.spollers {
-	margin: rem(0) rem(0) rem(30) rem(0);
-    font-size: rem(16);
-    &__item {
-		margin: rem(0) rem(0) rem(10) rem(0);
-    }
-    &__text {
-		padding: rem(0) rem(10) rem(10);
-        line-height: 1.3;
-    }
-}
-.block-1 .spollers__item {
-    background-color: gray;
-}
-.block-2 .spollers__item {
-    background-color: yellow;
-}
-.block-3 .spollers__item {
-    background-color: orange;
-}
+
 
 /* 
 add this markup to index.html
