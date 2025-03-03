@@ -1,16 +1,20 @@
+@use "sass:math" as math;
+@use './../config/functions' as *;
+@use './../config/mixins' as *;
+
 .timer {
     margin: 0 auto;
-    width: 315px;
-    @media (max-width: 410px){
+    //width: rem(315);
+    @media (max-width: em(410)){
         width: 100%;
     }
     &__title {
         text-align: center;
-        font-size: 26px;
+        font-size: rem(26);
         font-weight: 500;
         text-transform: uppercase;
         &:not(:last-child) {
-            margin-bottom: 25px;
+            margin-bottom: rem(25);
         }
     }
 }
@@ -19,21 +23,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px;
-    border-radius: 12px;
-    box-shadow: 0 0 50px 16px rgba(0, 0, 0, .4);
-    @media (max-width: 410px){
-        padding: 3px;
+    padding: rem(8);
+    border-radius: rem(10);
+    box-shadow: 0 0 rem(50) rem(16) rgba(0, 0, 0, .4);
+    @media (max-width: em(410)){
+        padding: rem(3);
     }
 }
 .num {
     &:not(:last-child) {
-        margin-bottom: 10px;
+        margin-bottom: rem(10);
     }
 }
 .name {
     display: block;
-    min-width:  75px;
+    min-width:  rem(75);
     text-align: center;
 }
 

@@ -13,9 +13,9 @@
 	//position: fixed;
 	top: 0;
 	z-index: 50;
-	padding-block: rem(24);
+	padding-block: rem(15);
 	@media (max-width:em(991.98)){
-		padding-block: rem(15);
+		padding-block: rem(8);
 	}
 	&__container {
 		max-inline-size: rem(1030);

@@ -1,3 +1,6 @@
+@use "sass:math" as math;
+@use './../config/functions' as *;
+@use './../config/mixins' as *;
 $scrollUpMainColor: #dcdcdc;
 $scrollUpAccentColor: var(--c-scrollUp);
 .scroll-up {//circle 
@@ -16,6 +19,7 @@ $scrollUpAccentColor: var(--c-scrollUp);
     transition: 0.2s;
     transform: translateY(1.6rem);
     &::before{//arrow up
+        content:'';
         content:'🠕';
         position: absolute;
         top: 0;

@@ -97,7 +97,7 @@
 		font-weight: 500;
 		@media (any-hover: hover){
 			&:hover{
-				color: #e89f71;
+				color: var(--c-scrollUp);
 			}
 		}
 	}
@@ -139,11 +139,11 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		transition: all .2s;
+		transition: color .2s;
 		background: var(--accent-color) url("../assets/img/root/send.svg") center center no-repeat;
 		@media (any-hover: hover){
 			&:hover{
-				background-color: #bf825c;
+				background-color: var(--c-scrollUp);
 			}
 		}
 	}

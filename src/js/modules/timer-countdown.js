@@ -40,24 +40,24 @@ export default function initCountdown(parent, to, timerEndMessage) {
 			rootElements.forEach(root => {
 				if (days > 0 && root.querySelector('.days')) {//проверка на наличие класса в html и если дней < 0, то блок с днями удаляется из разметки
 					root.querySelector('.days .num').textContent = addLeadingZero(days);
-					root.querySelector('.days .name').textContent = decOfNum(days, ['день', 'дня', 'дней']);
+					root.querySelector('.days .name').textContent = decOfNum(days, ['day', 'days', 'days']);//['день', 'дня', 'дней']
 				} else {
 					root.querySelector('.days').style.display = 'none';
 				}
 
 				if (root.querySelector('.hours')) {
 					root.querySelector('.hours .num').textContent = addLeadingZero(hours);
-					root.querySelector('.hours .name').textContent = decOfNum(hours, ['час', 'часа', 'часов']);
+					root.querySelector('.hours .name').textContent = decOfNum(hours, ['hour', 'hours', 'hours']);//['час', 'часа', 'часов']
 				}
 
 				if (root.querySelector('.minutes')) {
 					root.querySelector('.minutes .num').textContent = addLeadingZero(minutes);
-					root.querySelector('.minutes .name').textContent = decOfNum(minutes, ['минута', 'минуты', 'минут']);
+					root.querySelector('.minutes .name').textContent = decOfNum(minutes, ['minute', 'minutes', 'minutes']);//['минута', 'минуты', 'минут']
 				}
 
 				if (root.querySelector('.seconds')) {
 					root.querySelector('.seconds .num').textContent = addLeadingZero(seconds);
-					root.querySelector('.seconds .name').textContent = decOfNum(seconds, ['секунда', 'секунды', 'секунд']);
+					root.querySelector('.seconds .name').textContent = decOfNum(seconds, ['second', 'seconds', 'seconds']);//['секунда', 'секунды', 'секунд']
 				}
 
 				if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {//если таймер закончился, удаляем таймер и выводим сообщение, которое передаем третьим аргументом при вызове
