@@ -86,7 +86,7 @@
     &__button {
     }
     &__link {
-        background: url('../../assets/img/root/arrow-right.svg') right no-repeat;
+        background: url('../assets/img/root/arrow-right.svg') right no-repeat;
         justify-self: start;
         padding-right: rem(35);//21+14
         @media (max-width: em(650)){

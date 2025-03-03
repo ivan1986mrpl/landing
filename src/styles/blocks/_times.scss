@@ -1,0 +1,36 @@
+@use "../config/functions" as *;
+@use "../config/mixins" as *;
+
+
+.times {
+    text-align: center;
+    &__container {
+    }
+
+    &__title {
+        &:not(:last-child) {
+            margin-bottom: rem(30);
+        }
+    }
+
+    &__descr {
+        &:not(:last-child) {
+            margin-bottom: rem(30);
+            line-height: 1.5;
+        }
+    }
+
+    &__countdown {
+    }
+}
+
+
+.timer {
+
+    &__title {
+    }
+
+    &__wrapper {
+    }
+}
+

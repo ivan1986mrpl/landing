@@ -18,7 +18,7 @@
  
 window.addEventListener('DOMContentLoaded', () => {
 // getting today's date and displaying it on a page in Russian or English (HTML and JavaScript) <div class="date"></div> 
-// addDate();
+ addDate();
 
 // go to top button with scroll indicator and smooth scrolling to the top
  scrollUp();
@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
 // Передача конечной даты
 // initCountdown('.countdown', '27 Jun 2025 12:30', 'The timer is over');
 // Передача количества секунд (сутки = 86400с) (1 час = 3600секунд)
-// initCountdown('.countdown', 86440, 'The timer is over'); // Таймер на 1 день (86400 секунд)
+ initCountdown('.countdown', 86440, 'The timer is over'); // Таймер на 1 день (86400 секунд)
 
 // tabs();
 
