@@ -1,6 +1,9 @@
 @use "../config/functions" as *;
 @use "../config/mixins" as *;
 
+.date {
+    color: var(--c-orange);
+}
 
 .times {
     text-align: center;

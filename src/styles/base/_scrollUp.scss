@@ -18,9 +18,12 @@ $scrollUpAccentColor: var(--c-scrollUp);
     opacity: 0;
     transition: 0.2s;
     transform: translateY(1.6rem);
-    &::before{//arrow up
+    &::before{//arrow up          
         content:'';
-        content:'🠕';
+        background: url('../assets/img/root/arrow-right.svg') center no-repeat;
+        transform: rotate(-90deg);
+
+        //content:'🠕';
         position: absolute;
         top: 0;
         left: 0;
