@@ -8,7 +8,8 @@
  import spollers from "./modules/spollers";
 
  import headerFon from "./modules/headerFon";
- import pageNavigation from "./modules/page-navigation";
+ //import pageNavigation from "./modules/page-navigation";
+ import pageNav from "./modules/page-nav";
  import menuBurger from "./modules/menu-burger";
 
 
@@ -37,7 +38,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
  //headerFon();
 
- pageNavigation();
+ //pageNavigation();
+ pageNav();
 
  menuBurger();
 

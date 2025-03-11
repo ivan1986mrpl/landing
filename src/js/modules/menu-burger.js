@@ -2,6 +2,11 @@ export default function menuBurger() {
 	const menu = document.querySelector('.menu__body'),
 	menuBtn = document.querySelector('.icon-menu');
 
+	const headerHeight = document.querySelector('.header').offsetHeight;
+	document.querySelector(':root').style.setProperty('--header-height', `${headerHeight}px`);
+	console.log(headerHeight);
+	
+
 	if (menu && menuBtn) {
 		menuBtn.addEventListener('click', () => {
 			menu.classList.toggle('menu-open');
