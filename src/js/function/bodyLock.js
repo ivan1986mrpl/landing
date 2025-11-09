@@ -1,47 +1,42 @@
 export let bodyLockStatus = true;
-export const bodyLock = (delay = 500) => {
-  if (!bodyLockStatus) {
-    return;
-  }
-
-  const body = document.body;
-  const wrapper = document.querySelector('.wrapper');
+export const lockPadding = document.querySelectorAll('.lock-padding');
+export const body = document.querySelector('body');
+export function bodyLock(delay = 500) {
   const lockPaddingValue =
-    window.innerWidth -
-    (wrapper ? wrapper.offsetWidth : body.offsetWidth) +
-    'px';
-  const lockPadding = document.querySelectorAll('[data-lp]');
+    window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
 
-  lockPadding.forEach((el) => (el.style.paddingRight = lockPaddingValue));
+  if (lockPadding.length > 0) {
+    for (let i = 0; i < lockPadding.length; i++) {
+      const el = lockPadding[i];
+      el.style.paddingRight = lockPaddingValue;
+    }
+  }
   body.style.paddingRight = lockPaddingValue;
   body.classList.add('lock');
 
   bodyLockStatus = false;
-  setTimeout(() => (bodyLockStatus = true), delay);
-};
+  setTimeout(function () {
+    bodyLockStatus = true;
+  }, delay);
+}
 
-export const bodyUnlock = (delay = 500) => {
-  if (!bodyLockStatus) {
-    return;
-  }
-
-  const body = document.body;
-  const lockPadding = document.querySelectorAll('[data-lp]');
-
-  setTimeout(() => {
-    lockPadding.forEach((el) => (el.style.paddingRight = ''));
-    body.style.paddingRight = '';
+export function bodyUnlock(delay = 500) {
+  setTimeout(function () {
+    if (lockPadding.length > 0) {
+      for (let i = 0; i < lockPadding.length; i++) {
+        const el = lockPadding[i];
+        el.style.paddingRight = '0px';
+      }
+    }
+    body.style.paddingRight = '0px';
     body.classList.remove('lock');
   }, delay);
 
   bodyLockStatus = false;
-  setTimeout(() => (bodyLockStatus = true), delay);
-};
-
-export const bodyLockToggle = (delay = 500) => {
-  if (document.body.classList.contains('lock')) {
-    bodyUnlock(delay);
-  } else {
-    bodyLock(delay);
-  }
-};
+  setTimeout(function () {
+    bodyLockStatus = true;
+  }, delay);
+  // setTimeout(function () {
+  //   bodyLockStatus = true;
+  // }, bodyLockStatus);
+}

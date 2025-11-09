@@ -125,7 +125,7 @@
   content: '';
   width: 20px;
   height: 20px;
-  background: url('../assets/img/root/spoller-white.svg') center center
+  background: url('../components/spollers/spoller-white.svg') center center
     no-repeat;
   transition: transform 0.5s;
 }
@@ -148,7 +148,7 @@
   &__input {
     width: 100%;
     padding: 0 12px;
-    color: #828282;
+    color: #595656;
     background-color: #f4f5f7;
   }
 
@@ -158,8 +158,8 @@
     justify-content: center;
     align-items: center;
     height: 45px;
-    background: var(--accent-color) url('../assets/img/root/send.svg') center
-      center no-repeat;
+    background: var(--accent-color) url('../assets/img/root/libs/send.svg')
+      center center no-repeat;
     transition: color 0.2s;
 
     @media (any-hover: hover) {
@@ -175,7 +175,8 @@
   width: 20px;
   height: 20px;
   margin-right: 8px;
-  background: url('../assets/img/root/location.svg') center center no-repeat;
+  background: url('../assets/img/root/libs/location.svg') center center
+    no-repeat;
 }
 
 .ic-phone::before {
@@ -183,5 +184,5 @@
   width: 20px;
   height: 20px;
   margin-right: 8px;
-  background: url('../assets/img/root/phone.svg') center center no-repeat;
+  background: url('../assets/img/root/libs/phone.svg') center center no-repeat;
 }

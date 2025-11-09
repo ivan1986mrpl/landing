@@ -144,16 +144,38 @@
                 </button>
               </div>
             </div>
-            <div class="hero__image video">
-              <iframe
-                class="hover-img"
-                src="https://www.youtube.com/embed/SJN-QmuAh6I?si=IZK28_TAivRlDYhZ&amp;controls=0"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
+            <div class="hero__image">
+              <div id="video-1" class="video">
+                <img
+                  src="assets/img/hero/1.webp"
+                  alt=""
+                  class="video__preview"
+                  width="1100"
+                  height="655"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="video__play"
+                  aria-label="play video"
+                  title="play video"
+                >
+                  <svg
+                    width="58"
+                    height="58"
+                    viewBox="0 0 58 58"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M0.5625 29C0.5625 13.2944 13.2944 0.5625 29 0.5625C44.7056 0.5625 57.4375 13.2944 57.4375 29C57.4375 44.7056 44.7056 57.4375 29 57.4375C13.2944 57.4375 0.5625 44.7056 0.5625 29ZM41.4663 26.1318C43.7167 27.382 43.7167 30.6183 41.4663 31.8685L25.1248 40.9471C22.9377 42.1621 20.25 40.5807 20.25 38.0788V19.9215C20.25 17.4196 22.9377 15.8381 25.1248 17.0531L41.4663 26.1318Z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -515,114 +537,6 @@
           </div>
         </div>
       </footer>
-
-      <div data-popup="popup-1" class="popup">
-        <div class="popup__body">
-          <div data-popup-content class="popup__content">
-            <button
-              type="button"
-              class="popup__close"
-              data-popup-close
-              aria-label="Close popup"
-            >
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M30 10L10 30"
-                  stroke="#181C29"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M10 10L30 30"
-                  stroke="#181C29"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div data-popup="popup-2" class="popup">
-        <div class="popup__body">
-          <div data-popup-content class="popup__content">
-            <button
-              type="button"
-              class="popup__close"
-              data-popup-close
-              aria-label="Close popup"
-            >
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M30 10L10 30"
-                  stroke="#181C29"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M10 10L30 30"
-                  stroke="#181C29"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div data-popup="popup-video" class="popup">
-        <div class="popup__body">
-          <div data-popup-content class="popup__content">
-            <button
-              type="button"
-              class="popup__close"
-              data-popup-close
-              aria-label="Close popup"
-            >
-              <svg
-                width="40"
-                height="40"
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M30 10L10 30"
-                  stroke="#181C29"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M10 10L30 30"
-                  stroke="#181C29"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   </body>
 </html>
