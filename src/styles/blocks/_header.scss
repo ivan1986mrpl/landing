@@ -6,7 +6,7 @@
 
 .header {
   position: fixed;
-  z-index: 50;
+  z-index: var(--z-index-header);
   top: 0;
   left: 0;
   width: 100%;
@@ -17,7 +17,7 @@
     align-items: center;
 
     @include adaptive-clamp('column-gap', 40, 20);
-    @include adaptive-clamp('min-height', 120, 65);
+    @include adaptive-clamp('min-height', 110, 65);
   }
 
   &__logo {
@@ -49,9 +49,5 @@
     flex-wrap: wrap;
     align-items: center;
     column-gap: fluid(16, 8);
-
-    // @media (max-width: em(991.98)) {
-    //   column-gap: rem(10);
-    // }
   }
 }
