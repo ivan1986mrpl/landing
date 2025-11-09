@@ -1,49 +1,52 @@
-@use "../config/functions" as *;
-@use "../config/mixins" as *;
+@use '../helpers/' as *;
 
 .date {
-    color: var(--c-orange);
+  color: var(--color-orange);
 }
 
 .times {
-    text-align: center;
-    &__container {
-    }
-    &__title {
-        &:not(:last-child) {
-            margin-bottom: rem(30);
-        }
-    }
-    &__descr {
-        font-size: rem(26);
-        &:not(:last-child) {
-            margin-bottom: rem(30);
-            line-height: 1.5;
-        }
-    }
-    &__countdown {
-    }
-}
-.timer {
-    max-width: rem(640);
-}
-.countdown {
-    background-color: var(--c-scrollUp);
-    color: #000;
-    font-size: rem(22);
-    font-weight: 700;
-    padding: rem(18);
-    @media (max-width: em(410)){        
-        padding: rem(18) rem(0);
-        border-radius: 0;        
-        .name {
-            font-size: rem(15);
-            font-weight: 400;
-        }
-    }
-}
-.num {
+  text-align: center;
+
+  &__title {
     &:not(:last-child) {
-        margin-bottom: rem(25);
+      margin-bottom: rem(30);
     }
+  }
+
+  &__descr {
+    font-size: rem(26);
+
+    &:not(:last-child) {
+      margin-bottom: rem(30);
+      line-height: 1.5;
+    }
+  }
+}
+
+.timer {
+  max-width: rem(640);
+}
+
+.countdown {
+  padding: rem(18);
+  font-size: rem(22);
+  font-weight: 700;
+  color: #000000;
+  background-color: var(--scroll-up);
+
+  @media (max-width: em(410)) {
+    padding: rem(18) rem(0);
+    border-radius: 0;
+
+    .name {
+      font-size: rem(15);
+      font-weight: 400;
+    }
+  }
+}
+
+.num {
+  &:not(:last-child) {
+    margin-bottom: rem(25);
+  }
 }

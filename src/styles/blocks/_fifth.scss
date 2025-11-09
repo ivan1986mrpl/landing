@@ -1,0 +1,35 @@
+@use '../helpers' as *;
+
+.customers {
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 22%;
+    align-items: start;
+    gap: rem(25);
+
+    @media (max-width: em(650)) {
+      grid-template-columns: auto;
+      justify-items: center;
+    }
+  }
+
+  &__header-block {
+    .header-block__link {
+      @media (max-width: em(650)) {
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: em(650)) {
+      text-align: center;
+    }
+  }
+
+  &__image {
+    padding-right: rem(75);
+
+    @media (max-width: em(991.98)) {
+      padding-right: 0;
+    }
+  }
+}

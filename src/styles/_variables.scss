@@ -1,0 +1,39 @@
+@use 'helpers' as *;
+
+// --f-font-size: #{rem(16)}; #{rgba(#000, 10%) (если используем функции в css переменных, надо обернуть в #{} , иначе функции не будут работать)
+:root {
+  --font-family-base: 'Roboto', sans-serif;
+  --font-family: 'Roboto', sans-serif;
+  --second-family: 'Roboto', sans-serif;
+
+  --container-width: #{rem(1280)};
+  --container-padding-x: #{rem(15)};
+  --transition-duration: 0.3s;
+  --transition: 0.3s ease 0s;
+
+  --font-size: #{rem(18)};
+  --font-size-mobile: #{rem(16)};
+  --font-weight: 400;
+  --line-height: 1.5;
+
+  --main-color: var(--color-white);
+  --second-color: var(--color-dark);
+  --accent-color: var(--color-purple);
+  --hover-color: var(--scroll-up);
+  --hover-background: var(--scroll-up);
+  --scroll-up: var(--color-purple-light);
+
+  --color-white: #ffffff;
+  --color-dark: #0f172a;
+  --color-purple: #9333ea;
+  --color-purple-light: #c084fc;
+  --border: 1px solid var(--main-color);
+  --border-radius: #{rem(10)};
+  --border-radius-btn: #{rem(8)};
+
+  /// =============
+  --color-lightgrey: #b2b2b9;
+  --color-orange: #c2410c;
+  --color-pink: #ff285b;
+  --color-black: #{rgba(#000000, 10%)};
+}
