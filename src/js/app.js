@@ -7,9 +7,9 @@ import spollers from '../components/spollers/spollers';
 import ScrollUpButton from '../components/scrollUpButton/ScrollUpButton';
 import CountdownTimer from '../components/timer/CountdownTimer';
 import VideoLazy from '../components/video/video-lazy/VideoLazy';
-// import PopupCollection from '../components/popup/popup';
+import PopupCollection from '../components/popup-fix/Popup';
 // import CounterAnimationCollection from './../components/CounterAnimation/CounterAnimation';
-// import VideoPlayerCollection from './../components/video/video-player/VideoPlayer';
+import VideoPlayerCollection from './../components/video/video-player/VideoPlayer';
 
 window.addEventListener('DOMContentLoaded', () => {
   pageNavigation();
@@ -24,13 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
       container: document.getElementById('video-1'),
     },
   );
-  // new VideoLazy(
-  //   'https://www.youtube.com/embed/ARf4aoFmxBs?si=ug3ktJzKGB0Embdw',
-  //   {
-  //     container: document.getElementById('video-2'),
-  //   },
-  // );
-  // new PopupCollection();
+  new PopupCollection();
   // new CounterAnimationCollection();
-  // new VideoPlayerCollection();
+  new VideoPlayerCollection();
 });
