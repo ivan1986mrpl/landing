@@ -8,8 +8,6 @@
     justify-content: center;
   }
 
-  // &__label {
-  // }
   &__title {
     font-weight: 800;
     line-height: 1.1;
@@ -18,12 +16,6 @@
     @include adaptive-clamp('font-size', 72, 40);
   }
 
-  // &__title,
-  // &__text {
-  //   &:not(:last-child) {
-  //     //margin-bottom: rem(30);
-  //   }
-  // }
   &__title span {
     display: inline-block;
   }
@@ -96,12 +88,11 @@
     }
   }
 
-  // &__button {
-  // }
   &__link {
     justify-self: start;
     padding-right: rem(35); // 21+14
-    background: url('../assets/img/root/arrow-right.svg') right no-repeat;
+    background: url('../assets/img/root/project/arrow-right.svg') right
+      no-repeat;
 
     // @media (max-width: em(650)) {
     //   //justify-self: center;

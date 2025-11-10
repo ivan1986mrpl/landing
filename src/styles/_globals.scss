@@ -10,9 +10,16 @@ body {
   color: var(--color-white);
   background-color: var(--color-dark);
 
-  &.lock {
-    touch-action: none;
+  // &.lock {
+  //   overflow: hidden;
+  //   touch-action: none;
+  //   overscroll-behavior: none;
+  // }
+
+  [data-scroll-lock] & {
     overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
   }
 
   @media (max-width: em(767.98)) {
@@ -21,12 +28,12 @@ body {
 }
 
 .wrapper {
-  overflow: hidden; //  Поменять на clip - если используется в проекте position: sticky
+  overflow: clip;
   display: flex;
   flex-direction: column;
   min-height: 100%;
 
-  & main {
+  > main {
     flex: 1 1 auto;
   }
 }

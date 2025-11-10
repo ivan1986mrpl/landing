@@ -11,6 +11,10 @@
   --transition-duration: 0.3s;
   --transition: 0.3s ease 0s;
 
+  --z-index-header: 50;
+  --z-index-scroll-up: 10;
+  --z-index-popup: 100;
+
   --font-size: #{rem(18)};
   --font-size-mobile: #{rem(16)};
   --font-weight: 400;

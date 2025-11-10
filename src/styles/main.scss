@@ -11,15 +11,19 @@
 
 // @use '../components/icon/link';
 @use '../components/hover/hover-link';
+@use '../components/hover/hover-img';
 @use '../components/hover/pulse';
+
+// @use '../components/form/field';
 
 // @use '../components/hover/hover-prompt';
 @use '../components/spollers/spollers';
 @use '../components/scrollUpButton/scroll-up-button';
 @use '../components/timer/timer-countdown';
+@use '../components/video/video-lazy/video-lazy';
+@use '../components/video/video-player/video-player';
+@use '../components/popup-fix/popup';
 
-// @use '../components/video/video-player/video-player';
-// @use '../components/Popup/popup';
 // @use 'blocks/card';
 @use 'blocks/page';
 @use 'blocks/common';
@@ -32,6 +36,7 @@
 @use 'blocks/fourth';
 @use 'blocks/fifth';
 @use 'blocks/six';
+@use 'blocks/popups';
 
 // .header,
 // main > *:not(:last-child),
