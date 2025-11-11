@@ -22,9 +22,9 @@
       sizes="16x16"
       href="./assets/img/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="./assets/img/favicon/site.webmanifest" />
-    <script type="module" src="./assets/js/app.js"></script>
+    <link rel="manifest" href="./assets/img/favicon/site.webmanifest" />    
     <link rel="stylesheet" href="./assets/css/app.css">
+    <script type="module" src="./assets/js/app.js"></script>
   </head>
 
   <body>
@@ -43,12 +43,7 @@
             <nav class="header__menu menu" data-header-menu>
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a
-                    href="/"
-                    class="menu__link hover-link"
-                    data-goto=".hero"
-                    aria-label="home"
-                    title="home"
+                  <a href="/" class="menu__link hover-link" data-goto=".hero"
                     >Home</a
                   >
                 </li>
@@ -64,7 +59,7 @@
                   <a
                     href="/"
                     class="menu__link hover-link"
-                    data-goto=".poverful"
+                    data-goto=".powerful"
                     >Powerful</a
                   >
                 </li>
@@ -83,11 +78,13 @@
             <div class="header__actions actions-header">
               <a
                 href="#"
-                data-popup-link="popup"
                 class="actions-header__button button button--min button--transparent button--hidden"
                 >Log In</a
               >
-              <a href="#" class="actions-header__button button button--min"
+              <a
+                href="#"
+                data-popup-link="popup"
+                class="actions-header__button button button--min"
                 >Join Now</a
               >
             </div>
