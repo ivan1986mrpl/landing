@@ -2,14 +2,12 @@ import {
   bodyLockStatus,
   bodyLock,
   bodyUnlock,
-  // bodyLockToggle,
 } from '../../js/function/bodyLock';
 
-// Клас Popup
-export default class Popup {
+class Popup {
   constructor(options) {
     let config = {
-      logging: true,
+      // logging: true,
       init: true,
       //Для кнопок
       attributeOpenButton: 'data-popup-link', // Атрибут для кнопки, яка викликає попап
@@ -102,8 +100,6 @@ export default class Popup {
     this.options.init ? this.initPopups() : null;
   }
   initPopups() {
-    // FLS(`_FLS_POPUP_START`);
-
     this.buildPopup();
     this.eventsPopup();
   }
@@ -138,7 +134,6 @@ export default class Popup {
             this.open();
             return;
           }
-          // FLS(`_FLS_POPUP_NOATTR`);
           return;
         }
         // Закриття на порожньому місці (popup__wrapper) та кнопки закриття (popup__close) для закриття
@@ -308,10 +303,6 @@ export default class Popup {
             },
           }),
         );
-        // FLS(`_FLS_POPUP_OPEN`, this.targetOpen.selector);
-      } else {
-        // FLS(`_FLS_POPUP_NOPOPUP`);
-        console.error('fls');
       }
     }
   }
@@ -376,8 +367,6 @@ export default class Popup {
     setTimeout(() => {
       this._focusTrap();
     }, 50);
-
-    // FLS(`_FLS_POPUP_CLOSE`, this.previousOpen.selector);
   }
   // Отримання хешу
   _getHash() {
@@ -430,7 +419,5 @@ export default class Popup {
     }
   }
 }
-// Запускаємо
-// document.querySelector('[data-popup]')
-//   ? window.addEventListener('load', () => (window.flsPopup = new Popup({})))
-//   : null;
+
+export default Popup;

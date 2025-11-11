@@ -3,7 +3,7 @@
 body::after {
   content: '';
   position: fixed;
-  z-index: 149;
+  z-index: var(--z-body-after);
   top: 0;
   left: 0;
   width: 100%;
@@ -27,7 +27,7 @@ body::after {
   pointer-events: none;
 
   &[data-popup-active] {
-    z-index: 150;
+    z-index: var(--z-index-popup);
     overflow: auto;
     visibility: visible;
     pointer-events: auto;
@@ -63,7 +63,11 @@ body::after {
 }
 
 [data-popup-close] {
-  color: #000000;
+  position: fixed;
+  z-index: 5;
+  top: 15px;
+  right: 15px;
+  color: #ffffff;
 }
 
 [data-popup-youtube-place] iframe {
@@ -72,7 +76,7 @@ body::after {
 }
 
 /* 
-<div data-popup="popup" aria-hidden="true" class="popup">
+<div data-popup="popup-1" aria-hidden="true" class="popup">
   <div data-popup-wrapper class="popup__wrapper">
     <div data-popup-body class="popup__body">
       <button
@@ -83,28 +87,30 @@ body::after {
         title="Close popup"
       >
         <svg
-          width="23"
-          height="23"
-          viewBox="0 0 23 23"
+          width="40"
+          height="40"
+          viewBox="0 0 40 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            opacity="0.850056"
-            d="M1.73333 1.48883L21.5469 21.0288"
-            stroke="#979797"
-            stroke-linecap="square"
+            d="M30 10L10 30"
+            stroke="#181C29"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           />
           <path
-            opacity="0.850056"
-            d="M21.2667 1.48883L1.45309 21.0288"
-            stroke="#979797"
-            stroke-linecap="square"
+            d="M10 10L30 30"
+            stroke="#181C29"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           />
         </svg>
       </button>
-      <div data-popup-content class="popup__text">
-        <!-- Контент -->123456
+      <div data-popup-content class="popup__content">
+        <!-- Контент -->
       </div>
     </div>
   </div>
