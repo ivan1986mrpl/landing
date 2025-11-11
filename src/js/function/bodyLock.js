@@ -44,22 +44,3 @@ export let bodyLock = (delay = 500) => {
     }, delay);
   }
 };
-//=================
-// Устанавливает значение CSS-переменной --lock-padding-right
-// function setLockPadding(value) {
-//   const lockPaddingElements = document.querySelectorAll('[data-right-padding]');
-
-//   // Если value передан, записываем переменную
-//   if (value !== null && value !== undefined) {
-//     lockPaddingElements.forEach((el) => {
-//       el.style.setProperty('--lock-padding-right', value);
-//     });
-//     document.body.style.setProperty('--lock-padding-right', value);
-//   } else {
-//     // Если value не указан, удаляем переменную
-//     lockPaddingElements.forEach((el) => {
-//       el.style.removeProperty('--lock-padding-right');
-//     });
-//     document.body.style.removeProperty('--lock-padding-right');
-//   }
-// }
