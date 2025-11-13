@@ -9,6 +9,7 @@ import CountdownTimer from '../components/timer/CountdownTimer';
 import VideoLazy from '../components/video/video-lazy/VideoLazy';
 import Popup from '../components/Popup/Popup';
 import VideoPlayerCollection from './../components/video/video-player/VideoPlayer';
+import scroller from '../components/scroller/scroller';
 
 window.addEventListener('DOMContentLoaded', () => {
   pageNavigation();
@@ -16,6 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
   new Header();
   spollers();
   new ScrollUpButton();
+  scroller();
   new CountdownTimer('.countdown', 86440, 'Time is up!');
   new VideoLazy(
     'https://www.youtube.com/embed/J1d4nCXNlDs?si=FwqnJhoHvI-mTHg6',
