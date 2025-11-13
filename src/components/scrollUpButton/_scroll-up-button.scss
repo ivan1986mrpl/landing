@@ -1,15 +1,14 @@
 @use '../../styles/helpers/' as *;
 
 .scroll-up {
-  // circle
   --color-scroll-up-bcg: #ffffff;
   --color-scroll-up-path: var(--scroll-up);
   --color-scroll-up-progress: #989191;
-  --scroll-up-progress-width: 0.18rem;
+  --scroll-up-progress-width: 0.22rem;
 
   position: fixed;
   z-index: var(--z-index-scroll-up);
-  right: 2rem;
+  right: calc(2rem + var(--scrollbar-width, 0rem));
   bottom: 2rem;
   width: 3rem;
   height: 3rem;
@@ -61,7 +60,7 @@
 
 @media (width <= 450px) {
   .scroll-up {
-    right: 1.5rem;
+    right: calc(1.5rem + var(--scrollbar-width, 0rem));
     bottom: 1.5rem;
   }
 }
