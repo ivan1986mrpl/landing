@@ -1,423 +1,258 @@
+'use strict';
+
 import {
   bodyLockStatus,
   bodyLock,
   bodyUnlock,
 } from '../../js/function/bodyLock';
 
-class Popup {
-  constructor(options) {
-    let config = {
-      // logging: true,
-      init: true,
-      //Для кнопок
-      attributeOpenButton: 'data-popup-link', // Атрибут для кнопки, яка викликає попап
-      attributeCloseButton: 'data-popup-close', // Атрибут для кнопки, що закриває попап
-      // Для сторонніх об'єктів
-      fixElementSelector: '[data-right-padding]', // Атрибут для елементів із лівим паддингом (які fixed)
-      // Для об'єкту попапа
-      attributeMain: 'data-popup',
-      youtubeAttribute: 'data-popup-youtube', // Атрибут для коду youtube
-      youtubePlaceAttribute: 'data-popup-youtube-place', // Атрибут для вставки ролика youtube
-      setAutoplayYoutube: true,
-      // Зміна класів
-      classes: {
-        popup: 'popup',
-        // popupWrapper: 'popup__wrapper',
-        popupContent: 'data-popup-body',
-        popupActive: 'data-popup-active', // Додається для попапа, коли він відкривається
-        bodyActive: 'data-popup-open', // Додається для боді, коли попап відкритий
-      },
-      focusCatch: true, // Фокус усередині попапа зациклений
-      closeEsc: true, // Закриття ESC
-      bodyLock: true, // Блокування скролла
-      hashSettings: {
-        location: true, // Хеш в адресному рядку
-        goHash: true, // Перехід по наявності в адресному рядку
-      },
-      on: {
-        // Події
-        beforeOpen: function () {},
-        afterOpen: function () {},
-        beforeClose: function () {},
-        afterClose: function () {},
+export default class Popup {
+  selectors = {
+    root: '[data-popup]',
+    openButton: '[data-popup-link]',
+    closeButton: '[data-popup-close]',
+    content: '[data-popup-body]',
+    youtubePlace: '[data-popup-youtube-place]',
+  };
+
+  stateAttrs = {
+    popupActive: 'data-popup-active',
+    bodyActive: 'data-popup-open',
+  };
+
+  stateClasses = {
+    isVisible: 'is-visible',
+  };
+
+  constructor(options = {}) {
+    const defaults = {
+      youtubeAttr: 'data-popup-youtube',
+      autoplayYoutube: true,
+      focusCatch: true,
+      closeEsc: true,
+      bodyLock: true,
+      hash: {
+        use: true,
+        navigate: true,
       },
     };
-    this.youTubeCode;
+
+    this.options = {
+      ...defaults,
+      ...options,
+      hash: { ...defaults.hash, ...options?.hash },
+    };
+
     this.isOpen = false;
-    // Поточне вікно
-    this.targetOpen = {
-      selector: false,
-      element: false,
-    };
-    // Попереднє відкрите
-    this.previousOpen = {
-      selector: false,
-      element: false,
-    };
-    // Останнє закрите
-    this.lastClosed = {
-      selector: false,
-      element: false,
-    };
-    this._dataValue = false;
-    this.hash = false;
-
-    this._reopen = false;
-    this._selectorOpen = false;
-
-    this.lastFocusEl = false;
-    this._focusEl = [
+    this.activePopup = null;
+    this.lastFocusEl = null;
+    this.youTubeCode = null;
+    this._focusable = [
       'a[href]',
       'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
       'button:not([disabled]):not([aria-hidden])',
       'select:not([disabled]):not([aria-hidden])',
       'textarea:not([disabled]):not([aria-hidden])',
-      'area[href]',
-      'iframe',
-      'object',
-      'embed',
-      '[contenteditable]',
       '[tabindex]:not([tabindex^="-"])',
     ];
-    //this.options = Object.assign(config, options);
-    this.options = {
-      ...config,
-      ...options,
-      classes: {
-        ...config.classes,
-        ...options?.classes,
-      },
-      hashSettings: {
-        ...config.hashSettings,
-        ...options?.hashSettings,
-      },
-      on: {
-        ...config.on,
-        ...options?.on,
-      },
-    };
-    this.bodyLock = false;
-    this.options.init ? this.initPopups() : null;
-  }
-  initPopups() {
-    this.buildPopup();
-    this.eventsPopup();
-  }
-  buildPopup() {}
-  eventsPopup() {
-    // Клік по всьому документі
-    document.addEventListener(
-      'click',
-      function (e) {
-        // Клік по кнопці "відкрити"
-        const buttonOpen = e.target.closest(
-          `[${this.options.attributeOpenButton}]`,
-        );
-        if (buttonOpen) {
-          e.preventDefault();
-          this._dataValue = buttonOpen.getAttribute(
-            this.options.attributeOpenButton,
-          )
-            ? buttonOpen.getAttribute(this.options.attributeOpenButton)
-            : 'error';
-          this.youTubeCode = buttonOpen.getAttribute(
-            this.options.youtubeAttribute,
-          )
-            ? buttonOpen.getAttribute(this.options.youtubeAttribute)
-            : null;
-          if (this._dataValue !== 'error') {
-            if (!this.isOpen) {
-              this.lastFocusEl = buttonOpen;
-            }
-            this.targetOpen.selector = `${this._dataValue}`;
-            this._selectorOpen = true;
-            this.open();
-            return;
-          }
-          return;
-        }
-        // Закриття на порожньому місці (popup__wrapper) та кнопки закриття (popup__close) для закриття
-        const buttonClose = e.target.closest(
-          `[${this.options.attributeCloseButton}]`,
-        );
-        if (
-          buttonClose ||
-          (!e.target.closest(`[${this.options.classes.popupContent}]`) &&
-            this.isOpen)
-        ) {
-          e.preventDefault();
-          this.close();
-          return;
-        }
-      }.bind(this),
-    );
-    // Закриття ESC
-    document.addEventListener(
-      'keydown',
-      function (e) {
-        if (
-          this.options.closeEsc &&
-          e.which === 27 &&
-          e.code === 'Escape' &&
-          this.isOpen
-        ) {
-          e.preventDefault();
-          this.close();
-          return;
-        }
-        if (this.options.focusCatch && e.which === 9 && this.isOpen) {
-          this._focusCatch(e);
-          return;
-        }
-      }.bind(this),
-    );
 
-    // Відкриття по хешу
-    if (this.options.hashSettings.goHash) {
-      // Перевірка зміни адресного рядка
-      window.addEventListener(
-        'hashchange',
-        function () {
-          if (window.location.hash) {
-            this._openToHash();
-          } else {
-            this.close(this.targetOpen.selector);
-          }
-        }.bind(this),
-      );
+    this.bindEvents();
 
-      if (window.location.hash) {
-        this._openToHash();
-      }
+    if (this.options.hash.navigate && window.location.hash) {
+      this.openFromHash();
     }
   }
-  open(selectorValue) {
-    if (bodyLockStatus) {
-      // Якщо перед відкриттям попапа був режим lock
-      this.bodyLock =
-        document.documentElement.hasAttribute('data-scroll-lock') &&
-        !this.isOpen
-          ? true
-          : false;
-      // Якщо ввести значення селектора (селектор настроюється в options)
-      if (
-        selectorValue &&
-        typeof selectorValue === 'string' &&
-        selectorValue.trim() !== ''
-      ) {
-        this.targetOpen.selector = selectorValue;
-        this._selectorOpen = true;
-      }
-      if (this.isOpen) {
-        this._reopen = true;
-        this.close();
-      }
-      if (!this._selectorOpen) {
-        this.targetOpen.selector = this.lastClosed.selector;
-      }
-      if (!this._reopen) {
-        this.previousActiveElement = document.activeElement;
-      }
 
-      this.targetOpen.element = document.querySelector(
-        `[${this.options.attributeMain}=${this.targetOpen.selector}]`,
-      );
+  bindEvents() {
+    document.addEventListener('click', this.handleClick.bind(this));
+    document.addEventListener('keydown', this.handleKey.bind(this));
 
-      if (this.targetOpen.element) {
-        // YouTube
-        const codeVideo =
-          this.youTubeCode ||
-          this.targetOpen.element.getAttribute(
-            `${this.options.youtubeAttribute}`,
-          );
-        if (codeVideo) {
-          const urlVideo = `https://www.youtube.com/embed/${codeVideo}?rel=0&showinfo=0&autoplay=1`;
-          const iframe = document.createElement('iframe');
-          const autoplay = this.options.setAutoplayYoutube ? 'autoplay;' : '';
-          iframe.setAttribute('allowfullscreen', '');
-          iframe.setAttribute('allow', `${autoplay}; encrypted-media`);
-          iframe.setAttribute('src', urlVideo);
-          if (
-            !this.targetOpen.element.querySelector(
-              `[${this.options.youtubePlaceAttribute}]`,
-            )
-          ) {
-            this.targetOpen.element
-              .querySelector('[data-popup-content]')
-              .setAttribute(`${this.options.youtubePlaceAttribute}`, '');
-          }
-          this.targetOpen.element
-            .querySelector(`[${this.options.youtubePlaceAttribute}]`)
-            .appendChild(iframe);
-        }
-        if (this.options.hashSettings.location) {
-          // Отримання хешу та його виставлення
-          this._getHash();
-          this._setHash();
-        }
-        // До відкриття
-        this.options.on.beforeOpen(this);
-        // Створюємо свою подію після відкриття попапа
-        document.dispatchEvent(
-          new CustomEvent('beforePopupOpen', {
-            detail: {
-              popup: this,
-            },
-          }),
-        );
-        this.targetOpen.element.setAttribute(
-          this.options.classes.popupActive,
-          '',
-        );
-        document.documentElement.setAttribute(
-          this.options.classes.bodyActive,
-          '',
-        );
-
-        if (!this._reopen) {
-          !this.bodyLock ? bodyLock() : null;
-        } else {
-          this._reopen = false;
-        }
-
-        this.targetOpen.element.setAttribute('aria-hidden', 'false');
-
-        // Запам'ятаю це відчинене вікно. Воно буде останнім відкритим
-        this.previousOpen.selector = this.targetOpen.selector;
-        this.previousOpen.element = this.targetOpen.element;
-
-        this._selectorOpen = false;
-        this.isOpen = true;
-
-        setTimeout(() => {
-          this._focusTrap();
-        }, 50);
-
-        // Після відкриття
-        this.options.on.afterOpen(this);
-        // Створюємо свою подію після відкриття попапа
-        document.dispatchEvent(
-          new CustomEvent('afterPopupOpen', {
-            detail: {
-              popup: this,
-            },
-          }),
-        );
-      }
+    if (this.options.hash.navigate) {
+      window.addEventListener('hashchange', this.handleHashChange.bind(this));
     }
   }
-  close(selectorValue) {
-    if (
-      selectorValue &&
-      typeof selectorValue === 'string' &&
-      selectorValue.trim() !== ''
-    ) {
-      this.previousOpen.selector = selectorValue;
-    }
-    if (!this.isOpen || !bodyLockStatus) {
+
+  handleClick(e) {
+    const openButton = e.target.closest(this.selectors.openButton);
+    const closeButton = e.target.closest(this.selectors.closeButton);
+
+    if (openButton) {
+      e.preventDefault();
+      const popupId = openButton.getAttribute('data-popup-link');
+      this.youTubeCode = openButton.getAttribute(this.options.youtubeAttr);
+      this.lastFocusEl = openButton;
+      this.open(popupId);
       return;
     }
-    // До закриття
-    this.options.on.beforeClose(this);
-    // Створюємо свою подію перед закриттям попапа
-    document.dispatchEvent(
-      new CustomEvent('beforePopupClose', {
-        detail: {
-          popup: this,
-        },
-      }),
-    );
-    // YouTube
+
     if (
-      this.targetOpen.element.querySelector(
-        `[${this.options.youtubePlaceAttribute}]`,
-      )
+      closeButton ||
+      (this.isOpen && !e.target.closest(this.selectors.content))
     ) {
-      setTimeout(() => {
-        this.targetOpen.element.querySelector(
-          `[${this.options.youtubePlaceAttribute}]`,
-        ).innerHTML = '';
-      }, 500);
+      e.preventDefault();
+      this.close();
     }
-    this.previousOpen.element.removeAttribute(this.options.classes.popupActive);
-    // aria-hidden
-    this.previousOpen.element.setAttribute('aria-hidden', 'true');
-    if (!this._reopen) {
-      document.documentElement.removeAttribute(this.options.classes.bodyActive);
-      !this.bodyLock ? bodyUnlock() : null;
-      this.isOpen = false;
-    }
-    // Очищення адресного рядка
-    this._removeHash();
-    if (this._selectorOpen) {
-      this.lastClosed.selector = this.previousOpen.selector;
-      this.lastClosed.element = this.previousOpen.element;
-    }
-    // Після закриття
-    this.options.on.afterClose(this);
-    // Створюємо свою подію після закриття попапа
-    document.dispatchEvent(
-      new CustomEvent('afterPopupClose', {
-        detail: {
-          popup: this,
-        },
-      }),
-    );
+  }
 
-    setTimeout(() => {
-      this._focusTrap();
-    }, 50);
-  }
-  // Отримання хешу
-  _getHash() {
-    if (this.options.hashSettings.location) {
-      this.hash = `#${this.targetOpen.selector}`;
+  handleKey(e) {
+    if (!this.isOpen) {
+      return;
     }
-  }
-  _openToHash() {
-    let classInHash = window.location.hash.replace('#', '');
 
-    const openButton = document.querySelector(
-      `[${this.options.attributeOpenButton}="${classInHash}"]`,
-    );
-    if (openButton) {
-      this.youTubeCode = openButton.getAttribute(this.options.youtubeAttribute)
-        ? openButton.getAttribute(this.options.youtubeAttribute)
-        : null;
-    }
-    if (classInHash) {
-      this.open(classInHash);
+    if (this.options.closeEsc && e.key === 'Escape') {
+      e.preventDefault();
+      this.close();
+    } else if (this.options.focusCatch && e.key === 'Tab') {
+      this.focusCatch(e);
     }
   }
-  // Встановлення хеша
-  _setHash() {
-    history.pushState('', '', this.hash);
+
+  handleHashChange() {
+    if (window.location.hash) {
+      this.openFromHash();
+    } else {
+      this.close();
+    }
   }
-  _removeHash() {
-    history.pushState('', '', window.location.href.split('#')[0]);
+
+  open(selector) {
+    if (!bodyLockStatus) {
+      return;
+    }
+
+    const popup =
+      document.querySelector(`[data-popup="${selector}"]`) ??
+      document.querySelector(this.selectors.root);
+    if (!popup) {
+      return;
+    }
+
+    if (this.activePopup && this.activePopup !== popup) {
+      this.close(this.activePopup);
+    }
+
+    this.activePopup = popup;
+    this.isOpen = true;
+
+    this.setupYoutube();
+
+    if (this.options.hash.use) {
+      this.updateHash(selector);
+    }
+
+    popup.setAttribute(this.stateAttrs.popupActive, '');
+    popup.classList.add(this.stateClasses.isVisible);
+    popup.setAttribute('aria-hidden', 'false');
+    document.documentElement.setAttribute(this.stateAttrs.bodyActive, '');
+
+    if (this.options.bodyLock) {
+      bodyLock();
+    }
+
+    setTimeout(() => this.focusTrap(), 50);
   }
-  _focusCatch(e) {
-    const focusable = this.targetOpen.element.querySelectorAll(this._focusEl);
-    const focusArray = Array.prototype.slice.call(focusable);
+
+  close(target = this.activePopup) {
+    if (!target || !this.isOpen) {
+      return;
+    }
+
+    target.removeAttribute(this.stateAttrs.popupActive);
+    target.classList.remove(this.stateClasses.isVisible);
+    target.setAttribute('aria-hidden', 'true');
+
+    this.isOpen = false;
+    this.activePopup = null;
+
+    const iframe = target.querySelector('iframe');
+    if (iframe) {
+      iframe.style.display = 'none';
+    }
+
+    document.documentElement.removeAttribute(this.stateAttrs.bodyActive);
+    if (this.options.bodyLock) {
+      bodyUnlock();
+    }
+
+    if (this.options.hash.use) {
+      this.clearHash();
+    }
+
+    this.lastFocusEl?.focus();
+  }
+
+  setupYoutube() {
+    const popup = this.activePopup;
+    if (!popup) {
+      return;
+    }
+
+    const code =
+      this.youTubeCode || popup.getAttribute(this.options.youtubeAttr);
+    if (!code) {
+      return;
+    }
+
+    let iframe = popup.querySelector('iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.allowFullscreen = true;
+      iframe.allow = this.options.autoplayYoutube
+        ? 'autoplay; encrypted-media'
+        : 'encrypted-media';
+
+      popup.querySelector(this.selectors.youtubePlace)?.appendChild(iframe);
+    }
+
+    iframe.style.display = '';
+    iframe.src = `https://www.youtube.com/embed/${code}?rel=0&showinfo=0${
+      this.options.autoplayYoutube ? '&autoplay=1' : ''
+    }`;
+  }
+
+  focusCatch(e) {
+    const focusable = this.activePopup?.querySelectorAll(this._focusable);
+    if (!focusable?.length) {
+      return;
+    }
+
+    const focusArray = Array.from(focusable);
     const focusedIndex = focusArray.indexOf(document.activeElement);
 
     if (e.shiftKey && focusedIndex === 0) {
-      focusArray[focusArray.length - 1].focus();
+      focusArray.at(-1).focus();
       e.preventDefault();
-    }
-    if (!e.shiftKey && focusedIndex === focusArray.length - 1) {
+    } else if (!e.shiftKey && focusedIndex === focusArray.length - 1) {
       focusArray[0].focus();
       e.preventDefault();
     }
   }
-  _focusTrap() {
-    const focusable = this.previousOpen.element.querySelectorAll(this._focusEl);
-    if (!this.isOpen && this.lastFocusEl) {
-      this.lastFocusEl.focus();
-    } else {
-      focusable[0].focus();
+
+  focusTrap() {
+    const focusable = this.activePopup?.querySelectorAll(this._focusable);
+    if (!focusable?.length) {
+      return;
     }
+
+    (this.isOpen ? focusable[0] : this.lastFocusEl)?.focus();
+  }
+
+  updateHash(selector) {
+    history.replaceState(null, '', `#${selector}`);
+  }
+
+  clearHash() {
+    history.replaceState(null, '', window.location.pathname);
+  }
+
+  openFromHash() {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash) {
+      return;
+    }
+
+    const btn = document.querySelector(`[data-popup-link="${hash}"]`);
+    this.youTubeCode = btn?.getAttribute(this.options.youtubeAttr) || null;
+    this.open(hash);
   }
 }
-
-export default Popup;
