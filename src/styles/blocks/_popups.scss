@@ -1,1 +1,17 @@
 @use '../helpers/' as *;
+
+.popup-login {
+  [data-popup-body] {
+    // max-width: 900px;
+    padding: 20px 5px;
+    background-color: #343657;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}

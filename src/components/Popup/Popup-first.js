@@ -6,14 +6,13 @@ import {
   bodyUnlock,
 } from '../../js/function/bodyLock';
 
-import PopupYoutube from './PopupYoutube';
-
 export default class Popup {
   selectors = {
     root: '[data-popup]',
     openButton: '[data-popup-link]',
     closeButton: '[data-popup-close]',
     content: '[data-popup-body]',
+    youtubePlace: '[data-popup-youtube-place]',
   };
 
   stateAttrs = {
@@ -44,16 +43,10 @@ export default class Popup {
       hash: { ...defaults.hash, ...options?.hash },
     };
 
-    this.youtube = new PopupYoutube({
-      youtubeAttr: this.options.youtubeAttr,
-      autoplayYoutube: this.options.autoplayYoutube,
-    });
-
     this.isOpen = false;
     this.activePopup = null;
     this.lastFocusEl = null;
     this.youTubeCode = null;
-
     this._focusable = [
       'a[href]',
       'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
@@ -85,11 +78,9 @@ export default class Popup {
 
     if (openButton) {
       e.preventDefault();
-
-      this.youTubeCode = this.youtube.extractCodeFromButton(openButton);
-      this.lastFocusEl = openButton;
-
       const popupId = openButton.getAttribute('data-popup-link');
+      this.youTubeCode = openButton.getAttribute(this.options.youtubeAttr);
+      this.lastFocusEl = openButton;
       this.open(popupId);
       return;
     }
@@ -132,7 +123,6 @@ export default class Popup {
     const popup =
       document.querySelector(`[data-popup="${selector}"]`) ??
       document.querySelector(this.selectors.root);
-
     if (!popup) {
       return;
     }
@@ -144,11 +134,7 @@ export default class Popup {
     this.activePopup = popup;
     this.isOpen = true;
 
-    const code = this.youTubeCode || this.youtube.extractCodeFromPopup(popup);
-
-    if (code) {
-      this.youtube.setup(popup, code);
-    }
+    this.setupYoutube();
 
     if (this.options.hash.use) {
       this.updateHash(selector);
@@ -178,7 +164,10 @@ export default class Popup {
     this.isOpen = false;
     this.activePopup = null;
 
-    this.youtube.clear(target);
+    const iframe = target.querySelector('iframe');
+    if (iframe) {
+      iframe.style.display = 'none';
+    }
 
     document.documentElement.removeAttribute(this.stateAttrs.bodyActive);
     if (this.options.bodyLock) {
@@ -192,20 +181,49 @@ export default class Popup {
     this.lastFocusEl?.focus();
   }
 
+  setupYoutube() {
+    const popup = this.activePopup;
+    if (!popup) {
+      return;
+    }
+
+    const code =
+      this.youTubeCode || popup.getAttribute(this.options.youtubeAttr);
+    if (!code) {
+      return;
+    }
+
+    let iframe = popup.querySelector('iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.allowFullscreen = true;
+      iframe.allow = this.options.autoplayYoutube
+        ? 'autoplay; encrypted-media'
+        : 'encrypted-media';
+
+      popup.querySelector(this.selectors.youtubePlace)?.appendChild(iframe);
+    }
+
+    iframe.style.display = '';
+    iframe.src = `https://www.youtube.com/embed/${code}?rel=0&showinfo=0${
+      this.options.autoplayYoutube ? '&autoplay=1' : ''
+    }`;
+  }
+
   focusCatch(e) {
     const focusable = this.activePopup?.querySelectorAll(this._focusable);
     if (!focusable?.length) {
       return;
     }
 
-    const arr = Array.from(focusable);
-    const idx = arr.indexOf(document.activeElement);
+    const focusArray = Array.from(focusable);
+    const focusedIndex = focusArray.indexOf(document.activeElement);
 
-    if (e.shiftKey && idx === 0) {
-      arr.at(-1).focus();
+    if (e.shiftKey && focusedIndex === 0) {
+      focusArray.at(-1).focus();
       e.preventDefault();
-    } else if (!e.shiftKey && idx === arr.length - 1) {
-      arr[0].focus();
+    } else if (!e.shiftKey && focusedIndex === focusArray.length - 1) {
+      focusArray[0].focus();
       e.preventDefault();
     }
   }
@@ -234,8 +252,7 @@ export default class Popup {
     }
 
     const btn = document.querySelector(`[data-popup-link="${hash}"]`);
-
-    this.youTubeCode = this.youtube.extractCodeFromButton(btn);
+    this.youTubeCode = btn?.getAttribute(this.options.youtubeAttr) || null;
     this.open(hash);
   }
 }

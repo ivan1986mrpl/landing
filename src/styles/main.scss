@@ -15,6 +15,8 @@
 @use '../components/timer/timer-countdown';
 @use '../components/video/video-lazy/video-lazy';
 @use '../components/video/video-player/video-player';
+@use '../components/form/field';
+@use '../components/log-in/log-in';
 @use '../components/Popup/popup';
 @use 'blocks/page';
 @use 'blocks/common';

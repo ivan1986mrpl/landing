@@ -22,9 +22,9 @@
       sizes="16x16"
       href="./assets/img/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="./assets/img/favicon/site.webmanifest" />    
-    <link rel="stylesheet" href="./assets/css/app.css">
+    <link rel="manifest" href="./assets/img/favicon/site.webmanifest" />
     <script type="module" src="./assets/js/app.js"></script>
+    <link rel="stylesheet" href="./assets/css/app.css">
   </head>
 
   <body>
@@ -78,10 +78,14 @@
             <div class="header__actions actions-header">
               <a
                 href="#"
+                data-popup-link="popup-login"
                 class="actions-header__button button button--min button--transparent button--hidden"
                 >Log In</a
               >
-              <a href="#" class="actions-header__button button button--min"
+              <a
+                href="#"
+                data-popup-link="popup-login"
+                class="actions-header__button button button--min"
                 >Join Now</a
               >
             </div>
@@ -534,6 +538,125 @@
           </div>
         </div>
       </footer>
+
+      <div
+        data-popup="popup-login"
+        aria-hidden="true"
+        class="popup popup-login"
+      >
+        <div data-popup-wrapper class="popup__wrapper">
+          <div data-popup-body class="popup__body">
+            <button
+              data-popup-close
+              type="button"
+              class="popup__close"
+              aria-label="Close popup"
+              title="Close popup"
+            >
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 40 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M30 10L10 30"
+                  stroke="#181C29"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M10 10L30 30"
+                  stroke="#181C29"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <div data-popup-content class="popup-login__content login">
+              <div class="login__title">
+                <span>Log In </span>
+                <span>Join Now</span>
+              </div>
+              <input
+                class="login__checkbox"
+                type="checkbox"
+                id="switcher"
+                name="switcher"
+              />
+              <label class="login__label" for="switcher"></label>
+              <div class="login__card-inner">
+                <div class="login__card-wrapper">
+                  <div class="login__card-front">
+                    <div class="login__center-wrap">
+                      <form action="#" class="login__form">
+                        <h3 class="login__card-title">Log In</h3>
+                        <div class="field">
+                          <label class="field__label" for="login">Login</label>
+                          <input
+                            class="field__input"
+                            id="login"
+                            placeholder=" "
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="field">
+                          <label class="field__label" for="password"
+                            >Password</label
+                          >
+                          <input
+                            class="field__input"
+                            id="password"
+                            placeholder=" "
+                            autocomplete="off"
+                          />
+                        </div>
+                        <button type="submit" class="login__button button button-min">
+                          Log In
+                        </button>
+                      </form>
+                      <a href="/" class="login__link">Forget password</a>
+                    </div>
+                  </div>
+                  <div class="login__card-back">
+                    <div class="login__center-wrap">
+                      <form action="#" class="login__form">
+                        <h3 class="login__card-title">Join Now</h3>
+                        <div class="field">
+                          <label class="field__label" for="name">Name</label>
+                          <input
+                            class="field__input"
+                            id="name"
+                            placeholder=" "
+                            autocomplete="off"
+                          />
+                        </div>
+                        <div class="field">
+                          <label class="field__label" for="email"
+                            >Email</label
+                          >
+                          <input
+                            class="field__input"
+                            id="email"
+                            placeholder=" "
+                            autocomplete="off"
+                          />
+                        </div>
+                        <button type="submit" class="login__button button button-min">
+                          Join Now
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div data-popup="popup" aria-hidden="true" class="popup">
         <div data-popup-wrapper class="popup__wrapper">
