@@ -5,27 +5,19 @@
 @use 'utils';
 @use 'globals';
 @use 'helpers-classes';
-
-// @use '../components/keyframes/keyframes';
 @use '../components/form/button';
-
-// @use '../components/icon/link';
 @use '../components/hover/hover-link';
 @use '../components/hover/hover-img';
 @use '../components/hover/pulse';
-
-// @use '../components/form/field';
-
-// @use '../components/hover/hover-prompt';
 @use '../components/spollers/spollers';
 @use '../components/scrollUpButton/scroll-up-button';
 @use '../components/scroller/scroller';
 @use '../components/timer/timer-countdown';
 @use '../components/video/video-lazy/video-lazy';
 @use '../components/video/video-player/video-player';
+@use '../components/form/field';
+@use '../components/loginCard/loginCard';
 @use '../components/Popup/popup';
-
-// @use 'blocks/card';
 @use 'blocks/page';
 @use 'blocks/common';
 @use 'blocks/header';
@@ -37,7 +29,6 @@
 @use 'blocks/fourth';
 @use 'blocks/fifth';
 @use 'blocks/six';
-@use 'blocks/popups';
 
 // .header,
 // main > *:not(:last-child),

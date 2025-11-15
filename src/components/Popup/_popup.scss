@@ -52,9 +52,11 @@ body::after {
 [data-popup-body] {
   width: 100%;
   max-width: 900px;
-  padding: 20px;
+
+  // padding: 20px 5px;
   background-color: #eeeeee;
-  border-radius: 20px;
+
+  // border-radius: 20px;
   visibility: hidden;
   transition:
     transform 0.3s ease 0s,
