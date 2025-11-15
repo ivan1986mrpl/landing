@@ -22,9 +22,9 @@
       sizes="16x16"
       href="./assets/img/favicon/favicon-16x16.png"
     />
-    <link rel="manifest" href="./assets/img/favicon/site.webmanifest" />
-    <script type="module" src="./assets/js/app.js"></script>
+    <link rel="manifest" href="./assets/img/favicon/site.webmanifest" />    
     <link rel="stylesheet" href="./assets/css/app.css">
+    <script type="module" src="./assets/js/app.js"></script>
   </head>
 
   <body>
@@ -130,7 +130,7 @@
               </div>
               <div class="header-block__buttons">
                 <button
-                  data-popup-link="popup"
+                  data-popup-link="popup-login"
                   class="popup-btn header-block__button button"
                 >
                   Join Now
@@ -578,19 +578,15 @@
             </button>
             <div data-popup-content class="popup-login__content login">
               <div class="login__title">
-                <span>Log In </span>
+                <span>Log In</span>
                 <span>Join Now</span>
               </div>
-              <input
-                class="login__checkbox"
-                type="checkbox"
-                id="switcher"
-                name="switcher"
-              />
-              <label class="login__label" for="switcher"></label>
-              <div class="login__card-inner">
+              <div class="login__switcher" data-side="front">
+                <button class="login__switcher-toggle" type="button"></button>
+              </div>
+              <div class="login__card">
                 <div class="login__card-wrapper">
-                  <div class="login__card-front">
+                  <div class="login__card-side login__card-front">
                     <div class="login__center-wrap">
                       <form action="#" class="login__form">
                         <h3 class="login__card-title">Log In</h3>
@@ -599,8 +595,12 @@
                           <input
                             class="field__input"
                             id="login"
+                            name="login"
+                            type="text"
                             placeholder=" "
-                            autocomplete="off"
+                            autocomplete="username"
+                            required
+                            minlength="3"
                           />
                         </div>
                         <div class="field">
@@ -610,18 +610,25 @@
                           <input
                             class="field__input"
                             id="password"
+                            name="password"
+                            type="password"
                             placeholder=" "
-                            autocomplete="off"
+                            autocomplete="current-password"
+                            required
+                            minlength="6"
                           />
                         </div>
-                        <button type="submit" class="login__button button button-min">
+                        <button
+                          type="submit"
+                          class="login__button button button-min"
+                        >
                           Log In
                         </button>
                       </form>
                       <a href="/" class="login__link">Forget password</a>
                     </div>
                   </div>
-                  <div class="login__card-back">
+                  <div class="login__card-side login__card-back">
                     <div class="login__center-wrap">
                       <form action="#" class="login__form">
                         <h3 class="login__card-title">Join Now</h3>
@@ -630,22 +637,29 @@
                           <input
                             class="field__input"
                             id="name"
+                            name="name"
+                            type="text"
                             placeholder=" "
-                            autocomplete="off"
+                            autocomplete="name"
+                            required
                           />
                         </div>
                         <div class="field">
-                          <label class="field__label" for="email"
-                            >Email</label
-                          >
+                          <label class="field__label" for="email">Email</label>
                           <input
                             class="field__input"
                             id="email"
+                            name="email"
+                            type="email"
                             placeholder=" "
-                            autocomplete="off"
+                            autocomplete="email"
+                            required
                           />
                         </div>
-                        <button type="submit" class="login__button button button-min">
+                        <button
+                          type="submit"
+                          class="login__button button button-min"
+                        >
                           Join Now
                         </button>
                       </form>

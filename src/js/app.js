@@ -10,6 +10,7 @@ import VideoLazy from '../components/video/video-lazy/VideoLazy';
 import Popup from '../components/Popup/Popup';
 import VideoPlayerCollection from './../components/video/video-player/VideoPlayer';
 import scroller from '../components/scroller/scroller';
+import LoginCard from '../components/loginCard/LoginCard';
 
 window.addEventListener('DOMContentLoaded', () => {
   pageNavigation();
@@ -27,4 +28,5 @@ window.addEventListener('DOMContentLoaded', () => {
   );
   new Popup();
   new VideoPlayerCollection();
+  new LoginCard();
 });

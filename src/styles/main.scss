@@ -16,7 +16,7 @@
 @use '../components/video/video-lazy/video-lazy';
 @use '../components/video/video-player/video-player';
 @use '../components/form/field';
-@use '../components/log-in/log-in';
+@use '../components/loginCard/loginCard';
 @use '../components/Popup/popup';
 @use 'blocks/page';
 @use 'blocks/common';
@@ -29,7 +29,6 @@
 @use 'blocks/fourth';
 @use 'blocks/fifth';
 @use 'blocks/six';
-@use 'blocks/popups';
 
 // .header,
 // main > *:not(:last-child),

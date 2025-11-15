@@ -13,7 +13,7 @@
     // обращаемся к label только когда плейсхолдер не должен отображаться
     color: var(--field-color-label-active);
     scale: 0.7;
-    translate: -1.75em -2.75em; // надо подбирать
+    translate: -20px -54px; // надо подбирать
   }
 
   &__label {
